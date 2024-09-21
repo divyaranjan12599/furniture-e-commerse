@@ -108,6 +108,7 @@ export const getProfile = async (req, res) => {
 				email: user.email,
 				cartItems: user.cartItems,
 			},
+			
 		});
 	} catch (error) {
 		console.log("Server error: ", error.message);
