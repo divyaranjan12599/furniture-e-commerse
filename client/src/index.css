@@ -20,6 +20,28 @@ nav .active li {
   text-decoration: 1px underline black;
 }
 
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.bottom-nav a {
+  color: white;
+  text-decoration: none;
+}
+
+.bottom-nav a:hover {
+  text-decoration: underline;
+}
+
 @media screen and (max-width: 665px) {
   nav .active li {
     color: white;
