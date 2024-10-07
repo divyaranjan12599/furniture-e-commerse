@@ -58,6 +58,9 @@ const router = createBrowserRouter(
 );
 
 function App() {
+
+
+	
 	const [userAuth, setUserAuth] = useState({});
 	const [loading, setLoading] = useState(true);
 	const [verified, setVerified] = useState(false);
