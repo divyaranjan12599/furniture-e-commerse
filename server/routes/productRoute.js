@@ -12,7 +12,7 @@ router.get("/get-product/:productId", getProductById);
 router.get("/get-featured", getFeaturedProducts);
 
 
-//private routes
+//private routes    
 router.post("/create", protect, adminOnly, createProduct);
 
 router.get("/user-products", protect, adminOnly, getUserProducts);
