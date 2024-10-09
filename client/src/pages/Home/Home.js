@@ -19,7 +19,6 @@ const Home = () => {
         <BestSellers />
         <YearProduct />
         <SpecialOffers />
-        <Footer />
       </div>
     </div>
   );

@@ -25,21 +25,39 @@ nav .active li {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #333;
-  color: white;
+  background-color: #eaeaea;
+  color: rgb(59, 57, 57);
   display: flex;
   justify-content: space-around;
   padding: 10px 0;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
 }
 
+/* Initially hide the bottom-nav */
+.bottom-nav {
+  display: none;
+}
+
+/* Show the bottom-nav only for mobile view */
+@media (max-width: 768px) {
+  .bottom-nav {
+    display: flex; /* Show the nav in mobile view */
+  }
+}
+
 .bottom-nav a {
-  color: white;
+  color: rgb(48, 45, 45);
   text-decoration: none;
 }
 
 .bottom-nav a:hover {
-  text-decoration: underline;
+  color: rgb(157, 109, 45)!important;
+  /* text-decoration: underline; */
+}
+
+.bottom-nav a:active {
+  color: rgb(157, 109, 45)!important;
+  /* text-decoration: underline; */
 }
 
 @media screen and (max-width: 665px) {

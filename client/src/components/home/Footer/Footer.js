@@ -4,6 +4,7 @@ import { FaFacebook, FaYoutube, FaLinkedin, FaGithub } from "react-icons/fa";
 import FooterListTitle from "./FooterListTitle";
 import { paymentCard } from "../../../assets/images";
 import Image from "../../designLayouts/Image";
+import { CgHome, CgShoppingCart, CgPhone, CgInfo } from 'react-icons/cg';
 
 const Footer = () => {
   const [emailInfo, setEmailInfo] = useState("");
@@ -29,6 +30,42 @@ const Footer = () => {
   };
   return (
     <div className="w-full bg-[#F5F5F3] py-20">
+      <div className="mt-4">
+        <nav className="flex flex-row items-center justify-evenly bottom-nav align-center">
+          <a href="#" className="text-gray-400 hover:text-white flex items-center">
+            <div className="flex flex-col items-center justify-center">
+              <CgHome className="mr-1" />
+              <span className='text-xs'>
+                Home
+              </span>
+            </div>
+          </a>
+          <a href="#" className="text-gray-400 hover:text-white flex items-center">
+            <div className="flex flex-col items-center justify-center">
+              <CgShoppingCart className="mr-1" />
+              <span className='text-xs'>
+                Shop
+              </span>
+            </div>
+          </a>
+          <a href="#" className="text-gray-400 hover:text-white flex items-center">
+            <div className="flex flex-col items-center justify-center">
+              <CgPhone className="mr-1" />
+              <span className='text-xs'>
+                Contact
+              </span>
+            </div>
+          </a>
+          <a href="#" className="text-gray-400 hover:text-white flex items-center">
+            <div className="flex flex-col items-center justify-center">
+              <CgInfo className="mr-1" />
+              <span className='text-xs'>
+                About Us
+              </span>
+            </div>
+          </a>
+        </nav>
+      </div>
       <div className="max-w-container mx-auto grid grid-cols-1 md:grid-cols-2  xl:grid-cols-6 px-4 gap-10">
         <div className="col-span-2">
           <FooterListTitle title=" More about Orebi Shop" />
@@ -158,9 +195,8 @@ const Footer = () => {
             )}
 
             <Image
-              className={`w-[80%] lg:w-[60%] mx-auto ${
-                subscription ? "mt-2" : "mt-6"
-              }`}
+              className={`w-[80%] lg:w-[60%] mx-auto ${subscription ? "mt-2" : "mt-6"
+                }`}
               imgSrc={paymentCard}
             />
           </div>
