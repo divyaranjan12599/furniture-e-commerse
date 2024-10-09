@@ -106,7 +106,7 @@ export const paginationItems = [
   },
   {
     _id: 1003,
-    img: spfThree,
+    // img: spfThree,
     productName: "Headphones",
     price: "25.00",
     color: "Mixed",
