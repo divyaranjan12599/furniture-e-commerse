@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logoLight } from "../../assets/images";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   // ============= Initial State Start here =============
@@ -14,6 +16,8 @@ const SignUp = () => {
   const [country, setCountry] = useState("");
   const [zip, setZip] = useState("");
   const [checked, setChecked] = useState(false);
+  const navigate = useNavigate(); // Use this if you're using React Router
+  let time = 5;
   // ============= Initial State End here ===============
   // ============= Error Msg Start here =================
   const [errClientName, setErrClientName] = useState("");
@@ -68,7 +72,7 @@ const SignUp = () => {
   };
   // ================= Email Validation End here ===============
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     if (checked) {
       if (!clientName) {
@@ -115,17 +119,47 @@ const SignUp = () => {
         country &&
         zip
       ) {
-        setSuccessMsg(
-          `Hello dear ${clientName}, Welcome you to OREBI Admin panel. We received your Sign up request. We are processing to validate your access. Till then stay connected and additional assistance will be sent to you by your mail at ${email}`
-        );
-        setClientName("");
-        setEmail("");
-        setPhone("");
-        setPassword("");
-        setAddress("");
-        setCity("");
-        setCountry("");
-        setZip("");
+        // setSuccessMsg(
+        //   `Hello dear ${clientName}, Welcome you to OREBI Admin panel. We received your Sign up request. We are processing to validate your access. Till then stay connected and additional assistance will be sent to you by your mail at ${email}`
+        // );
+        try {
+          const response = await axios.post(process.env.REACT_APP_BASE_URL + "/api/user/register", {
+            name: clientName,
+            email: email,
+            password: password,
+            phone: phone,
+            address: address,
+            city: city,
+            country: country,
+            zip: zip
+          });
+          if (response.status === 201) {
+            setSuccessMsg(`Hello dear ${clientName}, You have successfully registered. You will be redirected to login in ${time} seconds. Please log in to your account.`);
+            toast.success("Registered Successfully")
+
+            const countdownInterval = setInterval(() => {
+              time -= 1;
+              setSuccessMsg(`Hello dear ${clientName}, You have successfully registered. You will be redirected to login in ${time} seconds. Please log in to your account.`);
+
+              if (time === 0) {
+                clearInterval(countdownInterval);
+                navigate('/signin');
+              }
+            }, 1000);
+          }
+        } catch (err) {
+          toast.error(err.message)
+          console.error("Error during registration:", err);
+        } finally {
+          setClientName("");
+          setEmail("");
+          setPhone("");
+          setPassword("");
+          setAddress("");
+          setCity("");
+          setCountry("");
+          setZip("");
+        }
       }
     }
   };
@@ -386,11 +420,10 @@ const SignUp = () => {
                 </div>
                 <button
                   onClick={handleSignUp}
-                  className={`${
-                    checked
-                      ? "bg-primeColor hover:bg-black hover:text-white cursor-pointer"
-                      : "bg-gray-500 hover:bg-gray-500 hover:text-gray-200 cursor-none"
-                  } w-full text-gray-200 text-base font-medium h-10 rounded-md hover:text-white duration-300`}
+                  className={`${checked
+                    ? "bg-primeColor hover:bg-black hover:text-white cursor-pointer"
+                    : "bg-gray-500 hover:bg-gray-500 hover:text-gray-200 cursor-none"
+                    } w-full text-gray-200 text-base font-medium h-10 rounded-md hover:text-white duration-300`}
                 >
                   Create Account
                 </button>

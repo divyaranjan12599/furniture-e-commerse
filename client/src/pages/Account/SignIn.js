@@ -23,7 +23,7 @@ const SignIn = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .post(`${process.env.REACT_APP_BASE_URL}/user/login`, { email, password })
+      .post(`${process.env.REACT_APP_BASE_URL}/api/user/login`, { email, password })
       .then(({ data }) => {
         console.log("LOGIN  : " ,data)
         storeIsSession("user", JSON.stringify(data));

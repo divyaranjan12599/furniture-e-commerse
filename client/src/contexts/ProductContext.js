@@ -11,7 +11,7 @@ export const ProductProvider = ({ children }) => {
 	useEffect(() => {
 		const fetchProducts = async () => {
 			try {
-				const response = await axios.get(process.env.REACT_APP_BASE_URL+"/user/product/get-all-products");
+				const response = await axios.get(process.env.REACT_APP_BASE_URL+"/api/products/all");
 				setProducts(response.data.products);
 			} catch (err) {
 				setError(err);
