@@ -76,7 +76,7 @@ const Header = () => {
                       alt="logoLight"
                     />
                     <ul className="text-gray-200 flex flex-col gap-2">
-                      {navBarList.map((item) => (
+                      {/* {navBarList.map((item) => (
                         <li
                           className="font-normal hover:font-bold items-center text-lg text-gray-200 hover:underline underline-offset-[4px] decoration-[1px] hover:text-white md:border-r-[2px] border-r-gray-300 hoverEffect last:border-r-0"
                           key={item._id}
@@ -89,7 +89,7 @@ const Header = () => {
                             {item.title}
                           </NavLink>
                         </li>
-                      ))}
+                      ))} */}
                     </ul>
                     <div className="mt-4">
                       <h1
@@ -114,7 +114,7 @@ const Header = () => {
                         </motion.ul>
                       )}
                     </div>
-                    <div className="mt-4">
+                    {/* <div className="mt-4">
                       <h1
                         onClick={() => setBrand(!brand)}
                         className="flex justify-between text-base cursor-pointer items-center font-titleFont mb-2"
@@ -136,7 +136,7 @@ const Header = () => {
                           <li className="headerSedenavLi">Others</li>
                         </motion.ul>
                       )}
-                    </div>
+                    </div> */}
                   </div>
                   <span
                     onClick={() => setSidenav(false)}

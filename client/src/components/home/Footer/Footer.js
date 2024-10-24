@@ -4,6 +4,7 @@ import { FaFacebook, FaYoutube, FaLinkedin, FaGithub } from "react-icons/fa";
 import FooterListTitle from "./FooterListTitle";
 import { paymentCard } from "../../../assets/images";
 import Image from "../../designLayouts/Image";
+import { navBarList } from "../../../constants";
 import { CgHome, CgShoppingCart, CgPhone, CgInfo } from 'react-icons/cg';
 
 const Footer = () => {
@@ -31,40 +32,19 @@ const Footer = () => {
   return (
     <div className="w-full bg-[#F5F5F3] py-20">
       <div className="mt-4">
-        <nav className="flex flex-row items-center justify-evenly bottom-nav align-center">
-          <a href="#" className="text-gray-400 hover:text-white flex items-center">
-            <div className="flex flex-col items-center justify-center">
-              <CgHome className="mr-1" />
-              <span className='text-xs'>
-                Home
-              </span>
-            </div>
-          </a>
-          <a href="#" className="text-gray-400 hover:text-white flex items-center">
-            <div className="flex flex-col items-center justify-center">
-              <CgShoppingCart className="mr-1" />
-              <span className='text-xs'>
-                Shop
-              </span>
-            </div>
-          </a>
-          <a href="#" className="text-gray-400 hover:text-white flex items-center">
-            <div className="flex flex-col items-center justify-center">
-              <CgPhone className="mr-1" />
-              <span className='text-xs'>
-                Contact
-              </span>
-            </div>
-          </a>
-          <a href="#" className="text-gray-400 hover:text-white flex items-center">
-            <div className="flex flex-col items-center justify-center">
-              <CgInfo className="mr-1" />
-              <span className='text-xs'>
-                About Us
-              </span>
-            </div>
-          </a>
-        </nav>
+      <nav className="flex flex-row items-center justify-evenly bottom-nav align-center">
+  {navBarList.map(item => (
+    <a key={item._id} href={item.link} className="text-gray-400 hover:text-white flex items-center">
+      <div className="flex flex-col items-center justify-center">
+        {item.title === "Home" && <CgHome className="mr-1" />}
+        {item.title === "Shop" && <CgShoppingCart className="mr-1" />}
+        {item.title === "Contact" && <CgPhone className="mr-1" />}
+        {item.title === "About" && <CgInfo className="mr-1" />}
+        <span className='text-xs'>{item.title}</span>
+      </div>
+    </a>
+  ))}
+</nav>
       </div>
       <div className="max-w-container mx-auto grid grid-cols-1 md:grid-cols-2  xl:grid-cols-6 px-4 gap-10">
         <div className="col-span-2">
