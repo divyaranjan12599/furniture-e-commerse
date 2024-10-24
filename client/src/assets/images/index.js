@@ -1,5 +1,5 @@
-import logo from "./logo.png";
-import logoLight from "./logo2.png";
+import logo from "./logo4.png";
+import logoLight from "./logo3.png";
 import bannerImgOne from "./banner/bannerImgOne.webp";
 import bannerImgTwo from "./banner/bannerImgTwo.webp";
 import bannerImgThree from "./banner/bannerImgThree.webp";

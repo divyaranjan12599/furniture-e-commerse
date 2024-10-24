@@ -13,6 +13,8 @@ const Shop = () => {
 
   const { products, loading, error } = useContext(ProductContext);
 
+  console.log(products)
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 

@@ -1,23 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ReactPaginate from "react-paginate";
 import Product from "../../home/Products/Product";
 import { paginationItems } from "../../../constants";
+import { ProductContext } from "../../../contexts/ProductContext";
 
-const items = paginationItems;
+// const items = paginationItems;
 function Items({ currentItems }) {
   return (
     <>
       {currentItems &&
         currentItems.map((item) => (
-          <div key={item._id} className="w-full">
+          <div key={item.id} className="w-full">
             <Product
-              _id={item._id}
-              img={item.img}
-              productName={item.productName}
+              _id={item.id}
+              img={item.image}
+              productName={item.name}
               price={item.price}
-              color={item.color}
+              color={item.colors}
               badge={item.badge}
-              des={item.des}
+              des={item.description}
             />
           </div>
         ))}
@@ -26,6 +27,7 @@ function Items({ currentItems }) {
 }
 
 const Pagination = ({ itemsPerPage }) => {
+  const { products, loading, error } = useContext(ProductContext);
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
@@ -36,12 +38,12 @@ const Pagination = ({ itemsPerPage }) => {
   // from an API endpoint with useEffect and useState)
   const endOffset = itemOffset + itemsPerPage;
   //   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentItems = items.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(items.length / itemsPerPage);
+  const currentItems = products.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(products.length / itemsPerPage);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % items.length;
+    const newOffset = (event.selected * itemsPerPage) % products.length;
     setItemOffset(newOffset);
     // console.log(
     //   `User requested page number ${event.selected}, which is offset ${newOffset},`
@@ -70,7 +72,7 @@ const Pagination = ({ itemsPerPage }) => {
 
         <p className="text-base font-normal text-lightText">
           Products from {itemStart === 0 ? 1 : itemStart} to {endOffset} of{" "}
-          {items.length}
+          {products.length}
         </p>
       </div>
     </div>

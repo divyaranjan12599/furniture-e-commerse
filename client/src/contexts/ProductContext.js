@@ -12,7 +12,8 @@ export const ProductProvider = ({ children }) => {
 		const fetchProducts = async () => {
 			try {
 				const response = await axios.get(process.env.REACT_APP_BASE_URL+"/api/products/all");
-				setProducts(response.data.products);
+				setProducts(response.data.data);
+				// console.log("fetch products : ", response.data.data)
 			} catch (err) {
 				setError(err);
 			} finally {

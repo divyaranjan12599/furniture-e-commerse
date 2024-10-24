@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import { resetCart } from "../../redux/orebiSlice";
 import { emptyCart } from "../../assets/images/index";
 import ItemCard from "./ItemCard";
+import { UserContext } from "../../App";
+import toast from "react-hot-toast";
 
 const Cart = () => {
+
+  const {userAuth, userAuth: {access_token}} = useContext(UserContext);
+  console.log(userAuth);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.orebiReducer.products);
   const [totalAmt, setTotalAmt] = useState("");
@@ -29,6 +35,15 @@ const Cart = () => {
       setShippingCharge(20);
     }
   }, [totalAmt]);
+
+  async function handleCheckOut(e) {
+    e.preventDefault();
+    if (!access_token) {
+      toast.error("Please Login to Place your order.");
+      navigate("/signin")
+    }
+  }
+
   return (
     <div className="max-w-container mx-auto px-4">
       <Breadcrumbs title="Cart" />
@@ -92,11 +107,11 @@ const Cart = () => {
                 </p>
               </div>
               <div className="flex justify-end">
-                <Link to="/paymentgateway">
-                  <button className="w-52 h-10 bg-primeColor text-white hover:bg-black duration-300">
+                {/* <Link to="/paymentgateway"> */}
+                  <button className="w-52 h-10 bg-primeColor text-white hover:bg-black duration-300" onClick={handleCheckOut}>
                     Proceed to Checkout
                   </button>
-                </Link>
+                {/* </Link> */}
               </div>
             </div>
           </div>
