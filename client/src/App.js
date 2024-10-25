@@ -19,6 +19,7 @@ import { createContext, useEffect, useState } from "react";
 import { ProductProvider } from "./contexts/ProductContext";
 import { lookInSession } from "./pages/Sessions/session";
 import toast, { Toaster } from "react-hot-toast";
+import OrderPage from "./pages/Account/OrderPage";
 
 export const UserContext = createContext({});
 
@@ -51,6 +52,7 @@ const router = createBrowserRouter(
 				<Route path="/cart" element={<Cart />}></Route>
 				<Route path="/paymentgateway" element={<Payment />}></Route>
 			</Route>
+			<Route path="/order" element={<OrderPage />}></Route>
 			<Route path="/signup" element={<SignUp />}></Route>
 			<Route path="/signin" element={<SignIn />}></Route>
 		</Route>
@@ -60,7 +62,7 @@ const router = createBrowserRouter(
 function App() {
 
 
-	
+
 	const [userAuth, setUserAuth] = useState({});
 	const [loading, setLoading] = useState(true);
 	const [verified, setVerified] = useState(false);

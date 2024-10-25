@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import logo from '../assets/logo.svg';
+import logo from '../assets/logo4.png';
 import {
   IconButton,
   Avatar,
@@ -82,6 +82,8 @@ export default function MobileNav({ onOpen, ...rest }) {
         src={logo}
         boxSize='150px'
         display={{ base: 'flex', md: 'none' }}
+        width="200px"
+        height="100px"
       />
 
       <Breadcrumb

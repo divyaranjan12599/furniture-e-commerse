@@ -3,7 +3,7 @@ import { useUserContext } from '../context/user_context';
 import { useToast } from '@chakra-ui/react';
 import { PreLoader } from '../components';
 import useMounted from '../hooks/useMounted';
-import logo from '../assets/logo.svg';
+import logo from '../assets/logo4.png';
 import {
   Flex,
   Box,

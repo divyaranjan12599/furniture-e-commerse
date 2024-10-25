@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import NavItem from './NavItem';
 import { LinkItems } from '../utils/constants';
 import { useUserContext } from '../context/user_context';
-import logo from '../assets/logo.svg';
+import logo from '../assets/logo4.png';
 import {
   Box,
   CloseButton,

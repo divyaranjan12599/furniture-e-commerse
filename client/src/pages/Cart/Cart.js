@@ -11,8 +11,8 @@ import toast from "react-hot-toast";
 
 const Cart = () => {
 
-  const {userAuth, userAuth: {access_token}} = useContext(UserContext);
-  console.log(userAuth);
+  const {userAuth, userAuth: {token}} = useContext(UserContext);
+  console.log(token);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.orebiReducer.products);
@@ -38,9 +38,20 @@ const Cart = () => {
 
   async function handleCheckOut(e) {
     e.preventDefault();
-    if (!access_token) {
+    console.log("Cart products : ", products)
+    console.log("Cart totalAmt : ", totalAmt)
+    console.log("Cart shippingCharge : ", shippingCharge)
+    if (!token) {
       toast.error("Please Login to Place your order.");
       navigate("/signin")
+    }else{
+      navigate("/order", {
+        state: {
+          products,
+          totalAmt,
+          shippingCharge
+        }
+      })
     }
   }
 
