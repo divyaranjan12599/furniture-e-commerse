@@ -72,3 +72,7 @@ nav .active li {
   display: none;
 }
 /* ============= NavLink active End here ================ */
+
+.w-40{
+  width: 14rem!important;
+}
