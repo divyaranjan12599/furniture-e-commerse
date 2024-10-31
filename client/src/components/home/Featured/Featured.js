@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Slider from "react-slick";
 import Heading from "../Products/Heading";
 import Product from "../Products/Product";
@@ -10,6 +10,7 @@ import {
 } from "../../../assets/images/index";
 import SampleNextArrow from "./SampleNextArrow";
 import SamplePrevArrow from "./SamplePrevArrow";
+import { ProductContext } from "../../../contexts/ProductContext";
 
 const Featured = () => {
   const settings = {
@@ -46,6 +47,9 @@ const Featured = () => {
       },
     ],
   };
+
+  const {product} = useContext(ProductContext)
+
   return (
     <div className="w-full pb-16">
       <Heading heading="Featured" />
