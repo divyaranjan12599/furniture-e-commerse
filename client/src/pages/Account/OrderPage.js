@@ -15,7 +15,7 @@ const OrderPage = () => {
 
     console.log("Products : ", products)
     const [name, setName] = useState("");
-    const email = userAuth.user.email
+    const email = userAuth?.user?.email
     const [shippingInfo, setShippingInfo] = useState({
         address: "",
         city: "",
@@ -95,6 +95,31 @@ const OrderPage = () => {
             console.error("Error placing order: ", error);
             toast.error("Error placing order. Please try again later.");
             navigate("/cart");
+        }
+    }
+
+    let data = {
+        name: "Keshav",
+        amount: 1,
+        number: "8019833422",
+        MID: "MID" + Date.now(),
+        transactionId: 'T' + Date.now(),
+    }
+
+    const hanldeChekout = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.post(process.env.REACT_APP_BASE_URL+"/api/payment", data).then(res => {
+                console.log(res.data);
+                if (res.data && res.data.data.instrumentResponse.redirectInfo.url) {
+                    window.location.href = res.data.data.instrumentResponse.redirectInfo.url;
+                }
+
+            }).catch(err => {
+                console.log(err)
+            })
+        } catch (error) {
+            console.log(error);
         }
     }
 
@@ -232,7 +257,7 @@ const OrderPage = () => {
                                 className={`${checked
                                     ? "bg-primeColor"
                                     : "bg-gray-500"} text-white text-base font-semibold font-titleFont h-10 rounded-md mt-3 cursor-pointer`}
-                                onClick={handlePlaceOrder}
+                                onClick={hanldeChekout}
                             >
                                 Place Order
                             </button>
