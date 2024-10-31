@@ -5,11 +5,19 @@ import { FaSearch, FaUser, FaCaretDown, FaShoppingCart } from "react-icons/fa";
 import Flex from "../../designLayouts/Flex";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { paginationItems } from "../../../constants";
 import { UserContext } from "../../../App";
 import { logOutUser } from "../../../pages/Sessions/session";
+import { ProductContext } from "../../../contexts/ProductContext";
 
 const HeaderBottom = () => {
+	const { products: items } = useContext(ProductContext);
+	const [paginationItems , setPaginationItems] = useState([]);
+	console.log(items)
+	useEffect(()=>{
+		if(items){
+			setPaginationItems(items)
+		}
+	},[items])
 	const {
 		userAuth,
 		userAuth: { token },
@@ -43,7 +51,7 @@ const HeaderBottom = () => {
 	};
 
 	useEffect(() => {
-		const filtered = paginationItems.filter((item) => item.productName.toLowerCase().includes(searchQuery.toLowerCase()));
+		const filtered = paginationItems.filter((item) => item.name.toLowerCase().includes(searchQuery.toLowerCase()));
 		setFilteredProducts(filtered);
 	}, [searchQuery]);
 
@@ -75,7 +83,7 @@ const HeaderBottom = () => {
 									filteredProducts.map((item) => (
 										<div
 											onClick={() =>
-												navigate(`/product/${item.productName.toLowerCase().split(" ").join("")}`, {
+												navigate(`/product/${item.name.toLowerCase().split(" ").join("")}`, {
 													state: {
 														item: item,
 													},
@@ -86,10 +94,10 @@ const HeaderBottom = () => {
 											key={item._id}
 											className="max-w-[600px] h-28 bg-gray-100 mb-3 flex items-center gap-3"
 										>
-											<img className="w-24" src={item.img} alt="productImg" />
+											<img className="w-24" src={item.image} alt="productImg" />
 											<div className="flex flex-col gap-1">
-												<p className="font-semibold text-lg">{item.productName}</p>
-												<p className="text-xs">{item.des}</p>
+												<p className="font-semibold text-lg">{item.name}</p>
+												<p className="text-xs">{item.description}</p>
 												<p className="text-sm">
 													Price: <span className="text-primeColor font-semibold">${item.price}</span>
 												</p>
